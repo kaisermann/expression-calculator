@@ -1,11 +1,9 @@
 const { TOKEN_TYPES } = require('./tokenizer.js');
 
-const getNode = (token, left = null, right = null) => {
-  const node = {
-    type: token.type === TOKEN_TYPES.Operator ? token.value : 'number',
-    left,
-    right,
-  };
+/** Create a new node for an AST */
+const createNode = (token, left = null, right = null) => {
+  const type = token.type === TOKEN_TYPES.Operator ? token.value : 'number';
+  const node = { type, left, right };
 
   if (token.type === TOKEN_TYPES.Literal) {
     node.value = token.value;
@@ -14,6 +12,7 @@ const getNode = (token, left = null, right = null) => {
   return node;
 };
 
+/** Create a simple AST with number/operator nodes */
 module.exports.AST = () => {
   const tree = [];
 
@@ -27,11 +26,11 @@ module.exports.AST = () => {
 
   return {
     addLiteral(token) {
-      tree.push(getNode(token));
+      tree.push(createNode(token));
     },
     addOperator(token) {
       const [right, left] = [tree.pop(), tree.pop()];
-      tree.push(getNode(token, left, right));
+      tree.push(createNode(token, left, right));
     },
     evaluate() {
       if (tree.length > 0) {

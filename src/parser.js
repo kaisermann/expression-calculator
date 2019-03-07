@@ -19,7 +19,10 @@ module.exports.parse = expr => {
   tokens.forEach(token => {
     if (token.type === TOKEN_TYPES.Literal) {
       tree.addLiteral(token);
-    } else if (token.type === TOKEN_TYPES.Operator) {
+      return;
+    }
+
+    if (token.type === TOKEN_TYPES.Operator) {
       if (operatorStack.length) {
         let topOperator = peekLast(operatorStack);
         while (
