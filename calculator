@@ -12,8 +12,11 @@ const rl = readline.createInterface({
 
 rl.on('line', line => {
   const result = calculate(line);
-
-  if (process.env.DEBUG && result != null) {
-    console.log(`${line} = ${result}`);
+  if (result != null) {
+    if (process.env.DEBUG) {
+      console.log(`${line} = ${result}`);
+    } else {
+      process.stdout.write(`${result}\n`);
+    }
   }
 });

@@ -14,7 +14,6 @@ const getNode = (token, left = null, right = null) => {
   return node;
 };
 
-// TODO: there's something wrong with the precedence of / and *
 module.exports.AST = () => {
   const tree = [];
 
@@ -22,8 +21,8 @@ module.exports.AST = () => {
     if (type === 'number') return Number.parseFloat(value);
     if (type === '+') return evalToken(left) + evalToken(right);
     if (type === '-') return evalToken(left) - evalToken(right);
-    if (type === '/') return evalToken(left) / evalToken(right);
     if (type === '*') return evalToken(left) * evalToken(right);
+    if (type === '/') return evalToken(left) / evalToken(right);
   };
 
   return {

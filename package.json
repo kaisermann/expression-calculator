@@ -1,13 +1,13 @@
 {
-  "name": "js-boilerplate",
+  "name": "teste-calculadora",
   "version": "1.0.0",
-  "license": "MIT",
-  "main": "src/index.js",
-  "description": "Barebones JS project boilerplate",
+  "bin": {
+    "calculator": "./calculator"
+  },
   "author": "Christian Kaisermann <christian@kaisermann.me>",
-  "repository": "https://github.com/kaisermann/js-boilerplate",
   "scripts": {
-    "simple-test": "cat operations.txt | cross-env DEBUG=true ./calculator ",
+    "simple-run": "cat _operations.txt | ./calculator > _result.txt",
+    "simple-test": "cat _operations.txt | cross-env DEBUG=true ./calculator ",
     "test": "jest --no-cache",
     "test:watch": "jest --no-cache --watchAll",
     "lint": "eslint \"src/**/*.js\"",

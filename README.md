@@ -10,14 +10,14 @@ Uma dada entrada pode ter múltiplas linhas, onde cada linha representa uma expr
 
 ### Exemplos de entradas e saídas esperadas pelo seu programa
 
-| Entrada                            | Saída             |
-| ---------------------------------- | ----------------- |
-| 2 + 3 \* 4 - 8                     | 6                 |
-| 18 - 5 + 2                         | 15                |
-| 6 / 4 - 1                          | 0.5               |
-| 7 - 6 / 2 \* 4                     | -5                |
-| 18 + 3 _ 6 - 10 / 4 _ 2 + 5.5 \* 2 | 42                |
-| 4 + 5 / 2<br>3 _ 2<br>5.01 _ 4     | 6.5<br>6<br>20.04 |
+| Entrada                              | Saída             |
+| ------------------------------------ | ----------------- |
+| 2 + 3 \* 4 - 8                       | 6                 |
+| 18 - 5 + 2                           | 15                |
+| 6 / 4 - 1                            | 0.5               |
+| 7 - 6 / 2 \* 4                       | -5                |
+| 18 + 3 \* 6 - 10 / 4 \* 2 + 5.5 \* 2 | 42                |
+| 4 + 5 / 2<br>3 \* 2<br>5.01 \* 4     | 6.5<br>6<br>20.04 |
 
 ## Considerações gerais
 

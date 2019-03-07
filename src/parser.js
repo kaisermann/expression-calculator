@@ -24,8 +24,7 @@ module.exports.parse = expr => {
         let topOperator = peekLast(operatorStack);
         while (
           topOperator &&
-          topOperator.type === TOKEN_TYPES.Operator &&
-          PRECEDENCE[topOperator.value] > PRECEDENCE[token.value]
+          PRECEDENCE[topOperator.value] >= PRECEDENCE[token.value]
         ) {
           tree.addOperator(operatorStack.pop());
           topOperator = peekLast(operatorStack);
