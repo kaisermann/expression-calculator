@@ -1,6 +1,6 @@
-const a = {
-  what: 0,
-};
+const { parse } = require('./parser.js');
 
-console.log(a);
-console.log(`aaa${a}`);
+module.exports.calculate = expr => {
+  parse(expr);
+  return null;
+};
