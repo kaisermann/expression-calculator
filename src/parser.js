@@ -1,13 +1,16 @@
 const { tokenize, TOKEN_TYPES } = require('./tokenizer.js');
 const { AST } = require('./ast.js');
 
+/** Operator precedence mapping */
 const PRECEDENCE = {
   '+': 2,
   '-': 2,
   '*': 3,
   '/': 3,
 };
-const peekLast = collection => collection[collection.length - 1];
+
+/** Peek the top of a simplified stack */
+const peekTop = stack => stack[stack.length - 1];
 
 module.exports.parse = expr => {
   const tokens = tokenize(expr);
@@ -24,13 +27,13 @@ module.exports.parse = expr => {
 
     if (token.type === TOKEN_TYPES.Operator) {
       if (operatorStack.length) {
-        let topOperator = peekLast(operatorStack);
+        let topOperator = peekTop(operatorStack);
         while (
           topOperator &&
           PRECEDENCE[topOperator.value] >= PRECEDENCE[token.value]
         ) {
           tree.addOperator(operatorStack.pop());
-          topOperator = peekLast(operatorStack);
+          topOperator = peekTop(operatorStack);
         }
       }
       operatorStack.push(token);

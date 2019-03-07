@@ -13,6 +13,7 @@ module.exports.TOKEN_TYPES = TOKEN_TYPES;
 
 module.exports.tokenize = expr => {
   const tokens = [];
+
   /** Buffer for reading whole numbers or decimals */
   let literalBuffer = '';
 
@@ -36,23 +37,29 @@ module.exports.tokenize = expr => {
     /** Split the expression into individual characters */
     .split('');
 
-  for (let i = 0; i < chars.length; i++) {
-    const char = chars[i];
-
-    if (char === '#') return;
-
-    if (isNumber(char) || char === '.') {
-      literalBuffer += char;
-    } else {
-      addBufferedLiteral();
-      if (isOperator(char)) {
-        addOperator(char);
-      } else {
-        throw new Error(`Invalid input "${char}" at ${expr}`);
-      }
-    }
+  /** Allow to comment a line beginning with '#' */
+  if (chars[0] === '#') {
+    return;
   }
 
+  chars.forEach(char => {
+    if (isNumber(char) || char === '.') {
+      literalBuffer += char;
+      return;
+    }
+
+    /** If encountered anything but a number, release the literal buffer */
+    addBufferedLiteral();
+
+    if (isOperator(char)) {
+      addOperator(char);
+      return;
+    }
+
+    throw new Error(`Invalid input "${char}" at ${expr}`);
+  });
+
+  /** Release the literal buffer if there's anything there */
   if (literalBuffer.length) {
     addBufferedLiteral();
   }
