@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+const readline = require('readline');
+
+const { calculate } = require('./src/index.js');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false,
+});
+
+rl.on('line', line => {
+  const result = calculate(line);
+
+  if (process.env.DEBUG) {
+    console.log(`${line} = ${result}`);
+  }
+});
