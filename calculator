@@ -13,7 +13,7 @@ const rl = readline.createInterface({
 rl.on('line', line => {
   const result = calculate(line);
 
-  if (process.env.DEBUG) {
+  if (process.env.DEBUG && result != null) {
     console.log(`${line} = ${result}`);
   }
 });

@@ -1,14 +1,15 @@
 const NUMBER_PATTERN = /\d/;
 const OPERATOR_PATTERN = /[+-/*]/;
+
+const isNumber = str => NUMBER_PATTERN.test(str);
+const isOperator = str => OPERATOR_PATTERN.test(str);
+const createToken = (type, value) => ({ type, value });
+
 const TOKEN_TYPES = {
   Literal: 'Literal',
   Operator: 'Operator',
 };
-
-const isNumber = str => NUMBER_PATTERN.test(str);
-const isOperator = str => OPERATOR_PATTERN.test(str);
-
-const createToken = (type, value) => ({ type, value });
+module.exports.TOKEN_TYPES = TOKEN_TYPES;
 
 module.exports.tokenize = expr => {
   const tokens = [];
@@ -27,21 +28,27 @@ module.exports.tokenize = expr => {
     tokens.push(createToken(TOKEN_TYPES.Operator, operator));
   };
 
-  /** Remove any unneeded whitespaces */
-  expr = expr.replace(/\s+/g, '');
-  /** Replace commas with dots for floating point operations */
-  expr = expr.replace(',', '.');
-
-  const chars = expr.split('');
+  const chars = expr
+    /** Remove any unneeded whitespaces */
+    .replace(/\s+/g, '')
+    /** Replace commas with dots for floating point operations */
+    .replace(',', '.')
+    /** Split the expression into individual characters */
+    .split('');
 
   for (let i = 0; i < chars.length; i++) {
     const char = chars[i];
+
+    if (char === '#') return;
+
     if (isNumber(char) || char === '.') {
       literalBuffer += char;
     } else {
       addBufferedLiteral();
       if (isOperator(char)) {
         addOperator(char);
+      } else {
+        throw new Error(`Invalid input "${char}" at ${expr}`);
       }
     }
   }
