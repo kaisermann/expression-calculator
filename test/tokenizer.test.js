@@ -11,7 +11,10 @@ describe('tokenization', () => {
   });
 
   it('should tokenize negative numbers', () => {
-    expect(tokenize('-1')).toMatchObject([createLiteralToken('-1')]);
+    expect(tokenize('-1')).toMatchObject([
+      createOperatorToken('-'),
+      createLiteralToken('1'),
+    ]);
   });
 
   it('should tokenize operators as Operator Tokens', () => {
