@@ -42,7 +42,7 @@ module.exports.tokenize = expr => {
     return;
   }
 
-  chars.forEach(char => {
+  chars.forEach((char, i) => {
     if (isNumber(char) || char === '.') {
       literalBuffer += char;
       return;
@@ -54,6 +54,14 @@ module.exports.tokenize = expr => {
     }
 
     if (isOperator(char)) {
+      /** Detect if it's a unary negative operator */
+      if (
+        char === '-' &&
+        /** if first token or last token is an operator */
+        (!tokens.length || tokens.slice(-1)[0].type === TOKEN_TYPES.Operator)
+      ) {
+        char = 'u';
+      }
       addOperator(char);
       return;
     }

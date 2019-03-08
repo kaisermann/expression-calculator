@@ -1,11 +1,11 @@
 const { parse } = require('./parser.js');
 
 const evalNode = node => {
-  if (!node) return 0;
-
   const { type, left, right, value } = node;
 
   if (type === 'number') return Number(value);
+
+  if (type === 'u') return evalNode(right) * -1;
 
   if (type === '+') return evalNode(left) + evalNode(right);
   if (type === '-') return evalNode(left) - evalNode(right);
