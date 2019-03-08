@@ -12,15 +12,9 @@ describe('tokenization', () => {
 
   it('should tokenize negative numbers', () => {
     expect(tokenize('-1')).toMatchObject([
-      createOperatorToken('-'),
+      createOperatorToken('u'),
       createLiteralToken('1'),
     ]);
-  });
-
-  it('should tokenize operators as Operator Tokens', () => {
-    OPERATORS.forEach(op =>
-      expect(tokenize(op)).toMatchObject([createOperatorToken(op)]),
-    );
   });
 
   it('should tokenize basic expressions', () => {
@@ -31,5 +25,9 @@ describe('tokenization', () => {
         createLiteralToken('2'),
       ]),
     );
+  });
+
+  it('should throw an exception for a invalid input character (not operator/number)', () => {
+    expect(() => tokenize('2a+%3')).toThrowError();
   });
 });

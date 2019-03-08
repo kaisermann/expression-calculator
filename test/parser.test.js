@@ -1,5 +1,4 @@
 const { parse } = require('../src/parser.js');
-const { AST } = require('../src/ast.js');
 
 const isNumber = n => n != null && Number.isFinite(+n);
 
@@ -23,5 +22,13 @@ describe('parsing', () => {
     expect(parse('7 - 6 / 2 * 4').get()).toMatchObject(
       n('-', 7, n('*', n('/', 6, 2), 4)),
     );
+  });
+
+  it('should throw an exception for a a binary operator have any null operand', () => {
+    expect(() => parse('2+3*').get()).toThrow();
+    expect(() => parse('2-').get()).toThrow();
+    expect(() => parse('2+').get()).toThrow();
+    expect(() => parse('2/').get()).toThrow();
+    expect(() => parse('-2').get()).not.toThrow();
   });
 });
