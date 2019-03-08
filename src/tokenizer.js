@@ -41,15 +41,24 @@ module.exports.tokenize = expr => {
   if (chars[0] === '#') {
     return;
   }
-
-  chars.forEach(char => {
-    if (isNumber(char) || char === '.') {
+  // -1
+  chars.forEach((char, i) => {
+    if (
+      isNumber(char) ||
+      char === '.' ||
+      /** check if a '-'/'+' represents a unary operator */
+      ((char === '-' || char === '+') &&
+        isNumber(chars[i + 1]) &&
+        !literalBuffer.length)
+    ) {
       literalBuffer += char;
       return;
     }
 
     /** If encountered anything but a number, release the literal buffer */
-    addBufferedLiteral();
+    if (literalBuffer.length) {
+      addBufferedLiteral();
+    }
 
     if (isOperator(char)) {
       addOperator(char);
