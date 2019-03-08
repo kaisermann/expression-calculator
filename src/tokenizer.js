@@ -58,7 +58,7 @@ module.exports.tokenize = expr => {
       return;
     }
 
-    throw new Error(`Invalid input "${char}" at ${expr}`);
+    throw new Error(`Invalid input "${char}" at "${expr}"`);
   });
 
   /** Release the literal buffer if there's anything there */
