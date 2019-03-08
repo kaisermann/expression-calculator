@@ -17,7 +17,7 @@ module.exports.AST = () => {
   const tree = [];
 
   const evalToken = ({ type, left, right, value }) => {
-    if (type === 'number') return Number.parseFloat(value);
+    if (type === 'number') return Number(value);
     if (type === '+') return evalToken(left) + evalToken(right);
     if (type === '-') return evalToken(left) - evalToken(right);
     if (type === '*') return evalToken(left) * evalToken(right);
