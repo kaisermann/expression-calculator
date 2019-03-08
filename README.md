@@ -15,10 +15,20 @@ $ echo -e '2 + 10 / 2 * 4 \n 2+2' | ./calculator
 
 ## Desenvolvendo
 
-Para alterar o código, é recomendado que se instalem todas as dependências de desenvolvimento:
+Para alterar o código, é recomendado que todas as dependências de desenvolvimento sejam instaladas:
 
 ```shell
 $ npm i
+```
+
+O código principal está disponível no diretório [`src`](https://github.com/SelecaoGlobocom/christian-kaisermann/blob/master/src)
+
+### Testes
+
+Para rodar os testes, basta executar o comando:
+
+```shell
+$ npm run test
 ```
 
 ### Instruções do projeto
