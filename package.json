@@ -6,15 +6,14 @@
   },
   "author": "Christian Kaisermann <christian@kaisermann.me>",
   "scripts": {
-    "simple-run": "cat _operations.txt | ./calculator > _result.txt",
-    "simple-test": "cat _operations.txt | cross-env DEBUG=true ./calculator ",
+    "simple-run": "cat _expressions.txt | ./calculator > _result.txt",
+    "simple-test": "export DEBUG=true; cat _expressions.txt | ./calculator ",
     "test": "jest --no-cache",
     "test:watch": "jest --no-cache --watchAll",
     "lint": "eslint \"src/**/*.js\"",
     "format": "prettier --loglevel silent --write \"src/**/*.js\" && eslint --fix \"src/**/*.js\""
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.0.0",

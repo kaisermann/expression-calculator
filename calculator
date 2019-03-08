@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
-const readline = require('readline');
+const { EOL } = require('os');
 
 const { calculate } = require('./src/index.js');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false,
-});
+process.stdin.on('data', data => {
+  const lines = data.toString().split(EOL);
 
-rl.on('line', line => {
-  const result = calculate(line);
-  if (result != null) {
-    if (process.env.DEBUG) {
-      console.log(`${line} = ${result}`);
-    } else {
-      process.stdout.write(`${result}\n`);
+  lines.forEach(line => {
+    const result = calculate(line);
+
+    if (result != null) {
+      if (process.env.DEBUG === 'true') {
+        console.log(`${line} = ${result}`);
+      } else {
+        process.stdout.write(`${result}${EOL}`);
+      }
     }
-  }
+  });
 });
