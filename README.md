@@ -1,14 +1,37 @@
-# 1 - Calculadora
+# Calculadora
+
+## Requerimentos
+
+- [`Node.js`](https://nodejs.org/en/) >= 8.6.0
+
+## Instruções de uso
+
+O binário principal é o arquivo [`calculator`](https://github.com/SelecaoGlobocom/christian-kaisermann/blob/master/calculator).
+
+```shell
+$ echo '2 + 10 / 2 * 4' | ./calculator
+$ echo -e '2 + 10 / 2 * 4 \n 2+2' | ./calculator
+```
+
+## Desenvolvendo
+
+Para alterar o código, é recomendado que se instalem todas as dependências de desenvolvimento:
+
+```shell
+$ npm i
+```
+
+### Instruções do projeto
 
 Você terá que criar um sistema que **avalie e compute o resultado** de uma **dada entrada com uma ou mais expressões matemáticas**.
 
-## Regras
+#### Regras
 
 A entrada provida deve ser no formato `<numero>( <operador> <numero>)+`, onde uma sequência de operações pode ser definida, por exemplo, `2 + 3 * 4 - 8`. As operações disponíveis são: soma (`+`), subtração (`-`), multiplicação (`*`) e divisão (`/`).
 
 Uma dada entrada pode ter múltiplas linhas, onde cada linha representa uma expressão a ser solucionada. Nesse caso, cada operação deve ser calculada de forma independente, gerando uma linha de resultado por expressão. As operações devem ser computadas segundo a [ordem de precedência dos operadores](https://en.wikipedia.org/wiki/Order_of_operations#Definition).
 
-### Exemplos de entradas e saídas esperadas pelo seu programa
+##### Exemplos de entradas e saídas esperadas pelo seu programa
 
 | Entrada                              | Saída             |
 | ------------------------------------ | ----------------- |
@@ -19,7 +42,7 @@ Uma dada entrada pode ter múltiplas linhas, onde cada linha representa uma expr
 | 18 + 3 \* 6 - 10 / 4 \* 2 + 5.5 \* 2 | 42                |
 | 4 + 5 / 2<br>3 \* 2<br>5.01 \* 4     | 6.5<br>6<br>20.04 |
 
-## Considerações gerais
+#### Considerações gerais
 
 A escolha da linguagem é deixada para você, utilize **a que você se sente mais confortável**. A entrada deverá ser por `STDIN` (_standard input_) e a saída por `STDOUT` (_standard output_) na linguagem que você escolher.
 
