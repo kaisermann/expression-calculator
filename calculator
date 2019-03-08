@@ -8,6 +8,8 @@ process.stdin.on('data', data => {
   const lines = data.toString().split(EOL);
 
   lines.forEach(line => {
+    if (!line.length) return;
+
     const result = calculate(line);
 
     if (result != null) {
