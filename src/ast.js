@@ -16,14 +16,6 @@ const createNode = (token, left = null, right = null) => {
 module.exports.AST = () => {
   const tree = [];
 
-  const evalToken = ({ type, left, right, value }) => {
-    if (type === 'number') return Number(value);
-    if (type === '+') return evalToken(left) + evalToken(right);
-    if (type === '-') return evalToken(left) - evalToken(right);
-    if (type === '*') return evalToken(left) * evalToken(right);
-    if (type === '/') return evalToken(left) / evalToken(right);
-  };
-
   return {
     addLiteral(token) {
       tree.push(createNode(token));
@@ -32,10 +24,8 @@ module.exports.AST = () => {
       const [right, left] = [tree.pop(), tree.pop()];
       tree.push(createNode(token, left, right));
     },
-    evaluate() {
-      if (tree.length > 0) {
-        return evalToken(tree[0]);
-      }
+    get() {
+      return tree.length ? tree[0] : null;
     },
   };
 };
