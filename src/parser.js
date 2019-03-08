@@ -3,10 +3,10 @@ const { AST } = require('./ast.js');
 
 /** Operator precedence mapping */
 const PRECEDENCE = {
-  '+': 2,
-  '-': 2,
-  '*': 3,
-  '/': 3,
+  '+': 0,
+  '-': 0,
+  '*': 1,
+  '/': 1,
 };
 
 /** Peek the top of a simplified stack */
