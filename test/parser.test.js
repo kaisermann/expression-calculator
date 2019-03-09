@@ -14,21 +14,21 @@ const n = (type, left = null, right = null) => {
 
 describe('parsing', () => {
   it('should create an AST from tokens', () => {
-    expect(parse('2 + 2').get()).toMatchObject(n('+', 2, 2));
-    expect(parse('2 + 10 / 2').get()).toMatchObject(n('+', 2, n('/', 10, 2)));
+    expect(parse('2 + 2')).toMatchObject(n('+', 2, 2));
+    expect(parse('2 + 10 / 2')).toMatchObject(n('+', 2, n('/', 10, 2)));
   });
 
   it('should process same precedence operators correctly', () => {
-    expect(parse('7 - 6 / 2 * 4').get()).toMatchObject(
+    expect(parse('7 - 6 / 2 * 4')).toMatchObject(
       n('-', 7, n('*', n('/', 6, 2), 4)),
     );
   });
 
   it('should throw an exception for a a binary operator have any null operand', () => {
-    expect(() => parse('2+3*').get()).toThrow();
-    expect(() => parse('2-').get()).toThrow();
-    expect(() => parse('2+').get()).toThrow();
-    expect(() => parse('2/').get()).toThrow();
-    expect(() => parse('-2').get()).not.toThrow();
+    expect(() => parse('2+3*')).toThrow();
+    expect(() => parse('2-')).toThrow();
+    expect(() => parse('2+')).toThrow();
+    expect(() => parse('2/')).toThrow();
+    expect(() => parse('-2')).not.toThrow();
   });
 });

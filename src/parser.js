@@ -108,5 +108,5 @@ module.exports.parse = expr => {
     tree.addOperator(operatorLeft);
   }
 
-  return tree;
+  return tree.get();
 };
