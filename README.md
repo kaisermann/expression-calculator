@@ -10,7 +10,21 @@ O binário principal é o arquivo [`calculator`](https://github.com/SelecaoGlobo
 
 ```shell
 $ echo '2 + 10 / 2 * 4' | ./calculator
+22
+
 $ echo -e '2 + 10 / 2 * 4 \n 2+2' | ./calculator
+22
+4
+
+$ echo -e '\n2 + 3 * 4 - 8\n18 - 5 + 2\n6 / 4 - 1\n7 - 6 / 2 * 4\n18 + 3 * 6 - 10 / 4 * 2 + 5.5 * 2\n4 + 5 / 2\n3 * 2\n5.01 * 4' | ./calculator
+6
+15
+0.5
+-5
+42
+6.5
+6
+20.04
 ```
 
 ## Desenvolvendo
