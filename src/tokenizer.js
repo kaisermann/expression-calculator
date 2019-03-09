@@ -39,10 +39,10 @@ module.exports.tokenize = expr => {
 
   /** Allow to comment a line beginning with '#' */
   if (chars[0] === '#') {
-    return;
+    return null;
   }
 
-  chars.forEach((char, i) => {
+  chars.forEach(char => {
     if (isNumber(char) || char === '.') {
       literalBuffer += char;
       return;

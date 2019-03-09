@@ -62,9 +62,6 @@ const AST = () => {
       }
       return exprStack.length ? exprStack[0] : null;
     },
-    toString() {
-      return JSON.stringify(this.get(), '');
-    },
   };
 };
 
@@ -76,7 +73,7 @@ module.exports.parse = expr => {
   const tree = AST();
   const operatorStack = [];
 
-  if (!tokens) return tree;
+  if (!tokens) return tree.get();
 
   const prec = operator => PRECEDENCE[operator.value];
   const assoc = operator => ASSOCIATIVITY[operator.value] || 'left';

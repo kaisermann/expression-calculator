@@ -27,6 +27,10 @@ describe('tokenization', () => {
     );
   });
 
+  it('should ignore lines starting with "#"', () => {
+    expect(tokenize('#2+2')).toBe(null);
+  });
+
   it('should throw an exception for a invalid input character (not operator/number)', () => {
     expect(() => tokenize('2a+%3')).toThrowError();
   });
