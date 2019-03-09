@@ -13,6 +13,11 @@ const n = (type, left = null, right = null) => {
 };
 
 describe('parsing', () => {
+  it('should return null for a empty expression', () => {
+    expect(parse('')).toBe(null);
+    expect(parse()).toBe(null);
+  });
+
   it('should create an AST from tokens', () => {
     expect(parse('2 + 2')).toMatchObject(n('+', 2, 2));
     expect(parse('2 + 10 / 2')).toMatchObject(n('+', 2, n('/', 10, 2)));

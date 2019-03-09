@@ -14,6 +14,8 @@ module.exports.TOKEN_TYPES = TOKEN_TYPES;
 module.exports.tokenize = expr => {
   const tokens = [];
 
+  if(expr == null) return [];
+
   /** Buffer for reading whole numbers or decimals */
   let literalBuffer = '';
 

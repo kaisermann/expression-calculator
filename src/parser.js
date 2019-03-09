@@ -45,7 +45,6 @@ const AST = () => {
       }
 
       const [right, left] = [exprStack.pop(), exprStack.pop()];
-
       if (left == null || right == null) {
         throw new Error(
           `A binary ("${token.value}") operator can't have null operands`,
@@ -55,12 +54,7 @@ const AST = () => {
       exprStack.push(createNode(token, left, right));
     },
     get() {
-      if (exprStack.length > 1) {
-        throw new Error(
-          'The expression stack should be of size 1 after parsing',
-        );
-      }
-      return exprStack.length ? exprStack[0] : null;
+      return exprStack.length === 1 ? exprStack[0] : null;
     },
   };
 };
@@ -73,9 +67,10 @@ module.exports.parse = expr => {
   const tree = AST();
   const operatorStack = [];
 
-  if (!tokens) return tree.get();
+  if (!tokens || !tokens.length) return tree.get();
 
   const prec = operator => PRECEDENCE[operator.value];
+  /* istanbul ignore next */
   const assoc = operator => ASSOCIATIVITY[operator.value] || 'left';
 
   tokens.forEach(token => {
