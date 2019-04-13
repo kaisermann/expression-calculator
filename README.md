@@ -6,7 +6,7 @@
 
 ## Instruções de uso
 
-O binário principal é o arquivo [`calculator`](https://github.com/SelecaoGlobocom/christian-kaisermann/blob/master/calculator).
+O binário principal é o arquivo [`calculator`](https://github.com/kaisermann/expression-calculator/blob/master/calculator).
 
 ```shell
 $ echo '2 + 10 / 2 * 4' | ./calculator
@@ -35,7 +35,7 @@ Para alterar o código, é recomendado que todas as dependências de desenvolvim
 $ npm i
 ```
 
-O código principal está disponível no diretório [`src`](https://github.com/SelecaoGlobocom/christian-kaisermann/blob/master/src)
+O código principal está disponível no diretório [`src`](https://github.com/kaisermann/expression-calculator/blob/master/src)
 
 ### Testes
 
